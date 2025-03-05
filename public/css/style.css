@@ -1,0 +1,102 @@
+/* Chat Interface Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F5EDE3; /* Soft cream background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.chat-container {
+    background-color: #E6D2B5; /* Light brown container */
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
+    overflow: hidden;
+}
+
+h1 {
+    background-color: #B47B4F; /* Darker brown header */
+    color: #FFFFFF;
+    text-align: center;
+    padding: 15px;
+    margin: 0;
+    font-weight: normal;
+}
+
+.chat-box {
+    padding: 15px;
+}
+
+.message-logs {
+    background-color: #F3E5D5; /* Cream message area */
+    height: 300px;
+    overflow-y: auto;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #D2B48C; /* Tan border */
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #B47B4F;
+    border-radius: 6px;
+    background-color: #FFF8E7; /* Very light cream input */
+    font-size: 16px;
+}
+
+.send-button {
+    background-color: #B47B4F; /* Brown button */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+    background-color: #8B5A2B; /* Darker brown on hover */
+}
+
+/* Scrollbar styling for message logs */
+.message-logs::-webkit-scrollbar {
+    width: 8px;
+}
+
+.message-logs::-webkit-scrollbar-track {
+    background: #F3E5D5;
+}
+
+.message-logs::-webkit-scrollbar-thumb {
+    background-color: #B47B4F;
+    border-radius: 4px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .chat-container {
+        width: 95%;
+        margin: 10px;
+    }
+
+    .input-area {
+        flex-direction: column;
+    }
+
+    .send-button {
+        width: 100%;
+    }
+}
