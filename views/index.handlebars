@@ -6,10 +6,24 @@
 </head>
 <body>
     <div class="chat-container">
-        <h1>Chat</h1>
-        <div id="messageLogs"></div>
-        <input type="text" id="chatBox" placeholder="Escribe tu mensaje">
-        <button id="sendButton">Enviar</button>
+        <h1>Chat en Tiempo Real</h1>
+        <div class="chat-box">
+            <!-- Área de mensajes -->
+            <div id="messageLogs" class="message-logs border p-3 mb-3">
+                <!-- Los mensajes se mostrarán aquí -->
+            </div>
+
+            <!-- Área de entrada -->
+            <div class="input-group">
+                <input type="text" id="chatBox" class="chat-input" placeholder="Escribe tu mensaje...">
+                <button id="sendButton" class="btn btn-primary">Enviar</button>
+            </div>
+
+            <!-- Botón de cerrar sesión -->
+            <div class="actions" style="margin-top: 10px; text-align: right;">
+                <button id="logout-button" class="send-button">Cerrar sesión</button>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -17,3 +31,4 @@
     <script src="../public/js/main.js"></script>
 </body>
 </html>
+

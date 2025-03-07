@@ -71,6 +71,20 @@ h1 {
     background-color: #8B5A2B; /* Darker brown on hover */
 }
 
+.btn.btn-primary {
+    background-color: #B47B4F; /* Brown button */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn.btn-primary:hover {
+    background-color: #8B5A2B; /* Darker brown on hover */
+}
+
 /* Scrollbar styling for message logs */
 .message-logs::-webkit-scrollbar {
     width: 8px;
