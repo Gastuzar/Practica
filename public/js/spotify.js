@@ -2,8 +2,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Obtención de token
     async function getSpotifyToken() {
-        const clientId = 'f78975ef2d8d4af48b6e67c0a55a0d6f';
-        const clientSecret = '2db84864f7314bc598d5cc700d87709b';
+        const clientId = 'xx';
+        const clientSecret = 'xx';
 
         try {
             const response = await fetch('https://accounts.spotify.com/api/token', {
