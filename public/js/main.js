@@ -1,3 +1,4 @@
+
 const socket = io();
 let user;
 const chatBox = document.getElementById('chatBox');

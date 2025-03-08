@@ -114,3 +114,114 @@ h1 {
         width: 100%;
     }
 }
+/* Spotify Container Styles */
+.spotify-container {
+    background-color: #E6D2B5; /* Light brown container matching chat container */
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.spotify-container h2 {
+    background-color: #B47B4F; /* Darker brown header matching h1 */
+    color: #FFFFFF;
+    text-align: center;
+    padding: 12px;
+    margin: -15px -15px 15px -15px;
+    font-weight: normal;
+    border-radius: 12px 12px 0 0;
+}
+
+.spotify-container .input-group {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 8px; /* Agregamos separación entre el input y el botón */
+}
+
+.spotify-container .form-control {
+    padding: 10px;
+    border: 1px solid #B47B4F;
+    border-radius: 6px; /* Cambiado para hacer el input completamente redondeado */
+    background-color: #FFF8E7; /* Very light cream input matching chat-input */
+    font-size: 16px;
+    flex-grow: 1;
+}
+
+.spotify-container .btn-primary {
+    background-color: #B47B4F; /* Brown button matching send-button */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px; /* Botón completamente redondeado */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.spotify-container .btn-primary:hover {
+    background-color: #8B5A2B; /* Darker brown on hover matching send-button:hover */
+}
+
+.spotify-container .list-group {
+    background-color: #F3E5D5; /* Cream message area matching message-logs */
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #D2B48C; /* Tan border matching message-logs */
+}
+
+.spotify-container .list-group-item {
+    background-color: transparent;
+    border-color: #D2B48C;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.spotify-container .list-group-item:hover {
+    background-color: #EAD7BC;
+}
+
+.spotify-container iframe {
+    border-radius: 8px;
+    border: 1px solid #D2B48C;
+    background-color: #F3E5D5;
+}
+
+/* Scrollbar styling for search results */
+.spotify-container .list-group::-webkit-scrollbar {
+    width: 8px;
+}
+
+.spotify-container .list-group::-webkit-scrollbar-track {
+    background: #F3E5D5;
+}
+
+.spotify-container .list-group::-webkit-scrollbar-thumb {
+    background-color: #B47B4F;
+    border-radius: 4px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .spotify-container {
+        width: 95%;
+        margin: 10px auto;
+    }
+    
+    .spotify-container iframe {
+        height: 70px;
+    }
+    
+    .spotify-container .input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .spotify-container .btn-primary {
+        width: 100%;
+    }
+}
