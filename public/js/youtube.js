@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // YouTube API Key - You'll need to replace this with your own API key
-    const apiKey = 'AIzaSyA1MUcevPVXd_-wWnVNfTTdi-TrlSorHXQ';
+    const apiKey = 'xx';
     
     // DOM Elements
     const youtubeSearch = document.getElementById('youtubeSearch');
