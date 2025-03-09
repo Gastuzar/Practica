@@ -3,86 +3,174 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #F5EDE3; /* Soft cream background */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     line-height: 1.6;
+    color: #5A3921; /* Darker brown for text */
 }
 
 .chat-container {
     background-color: #E6D2B5; /* Light brown container */
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(139, 90, 43, 0.15);
     width: 90%;
-    max-width: 500px;
+    max-width: 550px;
     overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid #D2B48C;
 }
 
 h1 {
     background-color: #B47B4F; /* Darker brown header */
     color: #FFFFFF;
     text-align: center;
-    padding: 15px;
+    padding: 18px;
     margin: 0;
-    font-weight: normal;
+    font-weight: bold;
+    font-size: 24px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
 }
 
 .chat-box {
-    padding: 15px;
+    padding: 20px;
 }
 
 .message-logs {
     background-color: #F3E5D5; /* Cream message area */
-    height: 300px;
-    overflow-y: auto;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 15px;
+    height: 320px;
+    overflow-y: auto; /* Esto ya estaba, pero es crucial para el scroll */
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 18px;
     border: 1px solid #D2B48C; /* Tan border */
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
+    display: flex; /* Añade esta línea */
+    flex-direction: column; /* Añade esta línea */
 }
 
-.input-area {
+/* Puedes añadir estas clases si quieres mejorar la presentación de los mensajes */
+.message-logs .message {
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.message-logs .message.own {
+    background-color: #D2B48C;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.message-logs .message.other {
+    background-color: #E9D7BE;
+    align-self: flex-start;
+    margin-right: auto;
+}
+
+.input-group {
     display: flex;
-    gap: 10px;
+    gap: 12px;
+    margin-bottom: 15px;
 }
 
 .chat-input {
     flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #B47B4F;
-    border-radius: 6px;
+    padding: 12px 15px;
+    border: 2px solid #C69C6D;
+    border-radius: 10px;
     background-color: #FFF8E7; /* Very light cream input */
     font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chat-input:focus {
+    outline: none;
+    border-color: #B47B4F;
+    box-shadow: 0 0 0 2px rgba(180, 123, 79, 0.2);
 }
 
 .send-button {
     background-color: #B47B4F; /* Brown button */
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 6px;
+    padding: 15px 25px; /* Increased padding for larger buttons */
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px; /* Larger font size */
 }
 
 .send-button:hover {
     background-color: #8B5A2B; /* Darker brown on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.send-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .btn.btn-primary {
     background-color: #B47B4F; /* Brown button */
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 6px;
+    padding: 15px 25px; /* Increased padding for larger buttons */
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px; /* Larger font size */
 }
 
 .btn.btn-primary:hover {
     background-color: #8B5A2B; /* Darker brown on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn.btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+/* Message style inside logs */
+.message {
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.message.own {
+    background-color: #D2B48C;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.message.other {
+    background-color: #E9D7BE;
+    align-self: flex-start;
+    margin-right: auto;
 }
 
 /* Scrollbar styling for message logs */
@@ -92,103 +180,218 @@ h1 {
 
 .message-logs::-webkit-scrollbar-track {
     background: #F3E5D5;
+    border-radius: 4px;
 }
 
 .message-logs::-webkit-scrollbar-thumb {
     background-color: #B47B4F;
     border-radius: 4px;
+    border: 2px solid #F3E5D5;
 }
 
-/* Responsive design */
-@media (max-width: 600px) {
-    .chat-container {
-        width: 95%;
-        margin: 10px;
-    }
-
-    .input-area {
-        flex-direction: column;
-    }
-
-    .send-button {
-        width: 100%;
-    }
+.message-logs::-webkit-scrollbar-thumb:hover {
+    background-color: #8B5A2B;
 }
+
 /* Spotify Container Styles */
 .spotify-container {
     background-color: #E6D2B5; /* Light brown container matching chat container */
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(139, 90, 43, 0.15);
     width: 90%;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 15px;
+    max-width: 550px;
+    margin: 0 auto 20px auto;
+    padding: 20px;
     overflow: hidden;
+    border: 1px solid #D2B48C;
 }
 
 .spotify-container h2 {
     background-color: #B47B4F; /* Darker brown header matching h1 */
     color: #FFFFFF;
     text-align: center;
-    padding: 12px;
-    margin: -15px -15px 15px -15px;
-    font-weight: normal;
-    border-radius: 12px 12px 0 0;
+    padding: 15px;
+    margin: -20px -20px 20px -20px;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 16px 16px 0 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
 }
 
 .spotify-container .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     display: flex;
-    gap: 8px; /* Agregamos separación entre el input y el botón */
+    gap: 12px;
 }
 
 .spotify-container .form-control {
-    padding: 10px;
-    border: 1px solid #B47B4F;
-    border-radius: 6px; /* Cambiado para hacer el input completamente redondeado */
+    padding: 12px 15px;
+    border: 2px solid #C69C6D;
+    border-radius: 10px;
     background-color: #FFF8E7; /* Very light cream input matching chat-input */
     font-size: 16px;
     flex-grow: 1;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.spotify-container .form-control:focus {
+    outline: none;
+    border-color: #B47B4F;
+    box-shadow: 0 0 0 2px rgba(180, 123, 79, 0.2);
 }
 
 .spotify-container .btn-primary {
     background-color: #B47B4F; /* Brown button matching send-button */
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 6px; /* Botón completamente redondeado */
+    padding: 15px 25px; /* Increased padding for larger buttons */
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px; /* Larger font size */
 }
 
 .spotify-container .btn-primary:hover {
-    background-color: #8B5A2B; /* Darker brown on hover matching send-button:hover */
+    background-color: #8B5A2B; /* Darker brown on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.spotify-container .btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.spotify-container .btn-success {
+    background-color: #5D9C59; /* Green for success */
+    color: white;
+    border: none;
+    padding: 15px 25px; /* Increased padding for larger buttons */
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 16px; /* Larger font size */
+}
+
+.spotify-container .btn-success:hover {
+    background-color: #4A7A48;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.spotify-container .btn-danger {
+    background-color: #E74C3C; /* Red for danger/logout */
+    color: white;
+    border: none;
+    padding: 15px 25px; /* Increased padding for larger buttons */
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 16px; /* Larger font size */
+}
+
+.spotify-container .btn-danger:hover {
+    background-color: #C0392B;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .spotify-container .list-group {
     background-color: #F3E5D5; /* Cream message area matching message-logs */
-    max-height: 200px;
+    max-height: 220px;
     overflow-y: auto;
-    border-radius: 8px;
-    margin-bottom: 15px;
+    border-radius: 12px;
+    margin-bottom: 18px;
     border: 1px solid #D2B48C; /* Tan border matching message-logs */
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
 }
 
 .spotify-container .list-group-item {
     background-color: transparent;
     border-color: #D2B48C;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
+    padding: 12px;
+    display: flex;
+    align-items: center;
 }
 
 .spotify-container .list-group-item:hover {
     background-color: #EAD7BC;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.spotify-container .list-group-item:active {
+    transform: translateY(0);
+    box-shadow: none;
 }
 
 .spotify-container iframe {
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid #D2B48C;
     background-color: #F3E5D5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.spotify-container iframe:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Now Playing container */
+#now-playing {
+    background-color: #F3E5D5;
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 15px;
+    border: 1px solid #D2B48C;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#now-playing img {
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#now-playing .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#now-playing .btn-group button {
+    flex: 1;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+#now-playing .btn-group button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#player-status {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: #F3E5D5;
+    border: 1px solid #D2B48C;
+    color: #5A3921;
+    text-align: center;
 }
 
 /* Scrollbar styling for search results */
@@ -198,30 +401,183 @@ h1 {
 
 .spotify-container .list-group::-webkit-scrollbar-track {
     background: #F3E5D5;
+    border-radius: 4px;
 }
 
 .spotify-container .list-group::-webkit-scrollbar-thumb {
     background-color: #B47B4F;
     border-radius: 4px;
+    border: 2px solid #F3E5D5;
+}
+
+.spotify-container .list-group::-webkit-scrollbar-thumb:hover {
+    background-color: #8B5A2B;
 }
 
 /* Responsive design */
 @media (max-width: 600px) {
-    .spotify-container {
+    .chat-container, .spotify-container {
         width: 95%;
         margin: 10px auto;
+        border-radius: 12px;
+    }
+    
+    h1, .spotify-container h2 {
+        font-size: 20px;
+        padding: 12px;
+    }
+    
+    .chat-box, .spotify-container {
+        padding: 15px;
+    }
+    
+    .message-logs {
+        height: 280px;
     }
     
     .spotify-container iframe {
-        height: 70px;
+        height: 80px;
     }
     
-    .spotify-container .input-group {
+    .spotify-container .input-group, .input-group {
         flex-direction: column;
         gap: 10px;
     }
     
-    .spotify-container .btn-primary {
+    .spotify-container .btn-primary, .btn.btn-primary, .send-button {
         width: 100%;
+        padding: 10px;
     }
+    
+    .message {
+        max-width: 90%;
+    }
+}
+
+/* Animation effects */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.list-group-item {
+    animation: fadeIn 0.2s ease-out;
+}
+
+.online-users-container {
+    background-color: #F3E5D5; /* Fondo crema similar a message-logs */
+    border-radius: 12px;
+    padding: 12px 15px;
+    margin: 15px 0;
+    border: 1px solid #D2B48C; /* Borde color canela */
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+}
+
+.online-users-title {
+    font-size: 16px;
+    color: #5A3921; /* Texto marrón oscuro */
+    font-weight: bold;
+    margin-right: 15px; /* Espacio entre el título y los usuarios */
+    white-space: nowrap; /* Evita que el título se rompa */
+    margin-bottom: 0; /* Elimina el margen inferior */
+}
+
+.user-bubbles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex-grow: 1; /* Permite que ocupe el espacio restante */
+}
+
+.user-bubble {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #B47B4F; /* Marrón que coincide con botones y encabezados */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 2px solid #E6D2B5; /* Borde marrón claro */
+    animation: fadeIn 0.3s ease-out;
+}
+
+.user-bubble:hover {
+    background-color: #8B5A2B; /* Marrón más oscuro al pasar el mouse */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.user-bubble:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustes responsivos */
+@media (max-width: 600px) {
+    .online-users-container {
+        padding: 10px;
+        margin: 8px 0;
+    }
+    
+    .online-users-title {
+        font-size: 14px;
+        margin-right: 10px;
+    }
+    
+    .user-bubble {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+}
+
+.media-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+}
+
+.tab-button {
+    background-color: #B47B4F;
+    color: white;
+    border: none;
+    padding: 15px 20px; /* Aumenta el padding para hacer los botones más grandes */
+    border-radius: 10px; /* Bordes redondeados */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    margin: 0 5px;
+    flex: 1; /* Hace que los botones ocupen el mismo espacio */
+    text-align: center; /* Centra el texto dentro del botón */
+    font-size: 16px; /* Tamaño de fuente más grande */
+}
+
+.tab-button.active {
+    background-color: #8B5A2B;
+}
+
+.tab-button:hover {
+    background-color: #8B5A2B;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.spotify-container {
+    display: none;
+}
+
+.spotify-container.active {
+    display: block;
 }

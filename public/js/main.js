@@ -1,4 +1,3 @@
-
 const socket = io();
 let user;
 const chatBox = document.getElementById('chatBox');
@@ -110,7 +109,6 @@ async function authenticate() {
         await showRegistrationForm();
     }
 }
-
 // Función para mostrar el formulario de registro
 async function showRegistrationForm() {
     const { value: formValues, dismiss } = await Swal.fire({
@@ -234,23 +232,67 @@ chatBox.addEventListener('keyup', (event) => {
 
 sendButton.addEventListener('click', sendMessage);
 
-function sendMessage() {
-    if (chatBox.value.trim().length > 0 && user) {
+// Función para desplazar automáticamente el contenedor de mensajes hacia abajo
+function scrollToBottom() {
+    const messageLogs = document.getElementById('messageLogs');
+    messageLogs.scrollTop = messageLogs.scrollHeight;
+    }
+    
+    // Modificar la función que maneja la recepción de mensajes
+    socket.on('messageLogs', (data) => {
+        let messages = '';
+        data.forEach(message => {
+        messages += `${message.user} dice: ${message.message}<br>`;
+        });
+        messageLogs.innerHTML = messages;
+        
+        // Llamar a scrollToBottom después de actualizar los mensajes
+        scrollToBottom();
+    });
+    
+  // También podemos llamar a scrollToBottom cuando enviamos un mensaje
+    function sendMessage() {
+        if (chatBox.value.trim().length > 0 && user) {
         socket.emit('message', {
             user: user.nickname,
             message: chatBox.value
         });
         chatBox.value = '';
+        
+        // No es necesario llamar a scrollToBottom aquí porque
+        // se llamará cuando recibamos el mensaje de vuelta del servidor
+        }
     }
-}
-
-socket.on('messageLogs', (data) => {
-    let messages = '';
-    data.forEach(message => {
-        messages += `${message.user} dice: ${message.message}<br>`;
+    
+    // Llamar a scrollToBottom cuando se inicia el chat para asegurar que
+    // empezamos viendo los mensajes más recientes
+    function setupChat() {
+        const logoutButton = document.getElementById('logout-button');
+        if (logoutButton) {
+        logoutButton.addEventListener('click', handleLogout);
+        }
+        
+        // Asegurar que el chat comienza desplazado hacia abajo
+        scrollToBottom();
+    }
+    
+    // También podemos observar cambios en el contenedor de mensajes
+    // para casos donde los mensajes se añaden de formas diferentes
+    function setupMessageObserver() {
+        const messageLogs = document.getElementById('messageLogs');
+        
+        const observer = new MutationObserver(() => {
+        scrollToBottom();
+        });
+        
+        observer.observe(messageLogs, { childList: true, subtree: true });
+    }
+    
+    // Añadir esto al final de la función initializeAuth o al final de setupChat
+    document.addEventListener('DOMContentLoaded', () => {
+        // Este código ya llama a initializeAuth, que eventualmente llama a setupChat
+        // setupMessageObserver(); // Descomenta esta línea si quieres usar el observer
     });
-    messageLogs.innerHTML = messages;
-});
 
 // Iniciar el flujo de autenticación cuando se carga la página
-document.addEventListener('DOMContentLoaded', initializeAuth);
+document.addEventListener('DOMContentLoaded', initializeAuth);  
